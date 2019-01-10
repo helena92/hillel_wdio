@@ -1,6 +1,6 @@
 import LoginPage from '../pageobjects/login.page';
 
-describe('login to Slack app and entering the chat', function () {
+describe('login to Slack', function () {
     // before(function () {
     //     browser.cdp('Network', 'enable');
     //     const conds = { offline: false, latency: 150, downloadThroughput: 550000, uploadThroughput: 550000, connectionType: 'cellular2g' };

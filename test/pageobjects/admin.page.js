@@ -7,6 +7,12 @@ class AdminPage {
     get adminPermPopUp() { return $(`span=${browser.config.testUser} is now an admin`); }
     get ownerPermPopUp() { return $(`span=${browser.config.testUser} is now an owner`); }
     get memberPermPopUp() { return $(`span=${browser.config.testUser} is now a member`); }
+    get deactivateUserMenuItem() { return $('div=Deactivate account'); }
+    get activateUserMenuItem() { return $('//div[text()="Activate account"]/parent::button'); }
+    get confirmDeactivateUser() { return $('button=Deactivate'); }
+    get deactivateUserDialogHeader() { return $(`h3=Deactivate ${browser.config.testUser}?`) }
+    get deactivatedUserPopUp() { return $(`div=Deactivated ${browser.config.testUser}’s account`) }
+    get reactivatedUserPopUp() { return $(`div=Reactivated ${browser.config.testUser}’s account`) }
 
     openAdminSection() {
         this.teamMenu.click();
@@ -34,6 +40,20 @@ class AdminPage {
                 break;
         }
         browser.pause(1000);
+    }
+
+    deactivateUser() {
+        this.userActions.click();
+        this.deactivateUserMenuItem.click();
+        this.deactivateUserDialogHeader.waitForDisplayed();
+        this.confirmDeactivateUser.click();
+        this.deactivatedUserPopUp.waitForDisplayed();
+    }
+
+    activateUser() {
+        this.userActions.click();
+        this.activateUserMenuItem.click();
+        this.reactivatedUserPopUp.waitForDisplayed();
     }
 
 };

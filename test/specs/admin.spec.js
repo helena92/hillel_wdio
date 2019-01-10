@@ -1,6 +1,6 @@
 import AdminPage from '../pageobjects/admin.page';
 
-describe('open admin section', function () {
+describe('admin section', function () {
     it('should open admin section', function () {
         AdminPage.openAdminSection();
     })
@@ -15,6 +15,14 @@ describe('open admin section', function () {
 
     it('should change user permissions to owner', function () {
         AdminPage.changeUserPermissions('Owner');
+    })
+
+    it('should deactivate user', function () {
+        AdminPage.deactivateUser();
+    })
+
+    it('should activate user', function () {
+        AdminPage.activateUser();
     })
 
 
