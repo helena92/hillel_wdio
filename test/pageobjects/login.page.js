@@ -1,26 +1,23 @@
-import Page from './page';
-// import { expect } from 'chai';
-
-class LoginPage extends Page {
+class LoginPage {
 
     get workspaceField() { return $('input#domain'); }
     get continueBtn() { return $('button[type=submit]'); }
-    get teamName() { return $('span=hillel_team'); }
     get userField() { return $('input[type=email]'); }
     get pwdField() { return $('input[type=password]'); }
     get teamOwnerName() { return $('span#team_menu_user_name'); }
     get startPageHeader() { return $('h1=Sign in to your workspace'); }
+    get signInHeader() { return $('#signin_header span'); }
 
 
     open() {
-        super.open('signin');
+        browser.url('signin');
         expect(browser.getTitle()).to.equal('Sign in | Slack');
     }
 
     inputTeamName() {
         this.workspaceField.setValue(browser.config.teamName);
         this.continueBtn.click();
-        this.teamName.waitForDisplayed();
+        expect(this.signInHeader.getText()).to.equal(browser.config.teamName);
     }
 
     inputLoginCreds() {

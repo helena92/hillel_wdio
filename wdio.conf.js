@@ -7,9 +7,11 @@ exports.config = {
     // WebdriverIO allows it to run your tests in arbitrary locations (e.g. locally or
     // on a remote machine).
     runner: 'local',
+
     username: 'elena.chornobai@gmail.com',
     pwd: 'hillelproject123',
     teamName: 'hilleltestteam',
+    testUser: 'Helen',
 
     suites: {
 
@@ -169,15 +171,9 @@ exports.config = {
         const chai = require('chai');
         global.expect = chai.expect;
 
-        browser.addCommand("getTabsAndSwitch", function async() {
-            return browser.getWindowHandles()
-                .then(
-                    error => { throw err; },
-                    handles => {
-                        console.log(`Found tabs ids: ${handles}`);
-                        return browser.switchToWindow(handles[handles.length - 1]);
-                    }
-                )
+        browser.addCommand("switchToLastTab", function () {
+            const t = browser.getWindowHandles();
+            browser.switchToWindow(t[t.length - 1]);
         });
     },
     /**
