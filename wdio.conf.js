@@ -1,3 +1,5 @@
+const timeout = process.env.DEBUG ? 999999999 : 70000;
+
 exports.config = {
     //
     // ====================
@@ -134,7 +136,7 @@ exports.config = {
     mochaOpts: {
         ui: 'bdd',
         compilers: ['js:@babel/register'],
-        timeout: 60000
+        timeout: timeout
     },
     //
     // =====
